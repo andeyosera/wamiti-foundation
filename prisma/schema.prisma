@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  location    String
+  area        String
+  imageUrls   String[]
+  impact      String?
+  featured    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Volunteer {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String
+  skills    String?
+  area      String?
+  createdAt DateTime @default(now())
+}
+
+model Contribution {
+  id            String   @id @default(cuid())
+  name          String
+  email         String
+  phone         String
+  amount        Float
+  mpesaCode     String?
+  paymentMethod String   @default("mpesa")
+  status        String   @default("pending")
+  createdAt     DateTime @default(now())
+}
+
+model Admin {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+}

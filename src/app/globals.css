@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-warm-white text-forest font-body;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display text-forest;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-amber-wamiti hover:bg-amber-dark text-white font-body font-medium px-8 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary text-primary hover:bg-primary hover:text-white font-body font-medium px-8 py-3 rounded-full transition-all duration-300;
+  }
+
+  .section-padding {
+    @apply px-6 py-16 md:px-12 lg:px-24;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden;
+  }
+
+  .page-hero {
+    @apply relative h-[70vh] flex items-center justify-center overflow-hidden;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
