@@ -1,9 +1,12 @@
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
 async function main() {
+  // Seed Projects
   await prisma.project.createMany({
+    skipDuplicates: true,
     data: [
       {
         title: "Shinoyi Community Borehole Project",
@@ -43,6 +46,18 @@ async function main() {
       },
     ],
   });
+
+  // Seed Admin
+  const hashedPassword = await bcrypt.hash("wamiti@admin2024", 10);
+  await prisma.admin.upsert({
+    where: { email: "admin@wamitifoundation.org" },
+    update: {},
+    create: {
+      email: "admin@wamitifoundation.org",
+      password: hashedPassword,
+    },
+  });
+
   console.log("Seed data created successfully!");
 }
 
