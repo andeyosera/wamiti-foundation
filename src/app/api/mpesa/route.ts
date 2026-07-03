@@ -21,7 +21,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Save contribution as pending first
     const contribution = await prisma.contribution.create({
       data: {
         name,
@@ -33,12 +32,14 @@ export async function POST(request: Request) {
       },
     });
 
-    // Trigger STK Push
     const mpesaResponse = await stkPush({
       phone,
       amount,
       accountRef: `WAMITI-${contribution.id.slice(0, 8).toUpperCase()}`,
     });
+
+    // Log full Safaricom response
+    console.log("MPESA RESPONSE:", JSON.stringify(mpesaResponse, null, 2));
 
     if (mpesaResponse.ResponseCode === "0") {
       return NextResponse.json({
@@ -53,6 +54,7 @@ export async function POST(request: Request) {
         {
           error:
             mpesaResponse.errorMessage ||
+            mpesaResponse.ResultDesc ||
             "Failed to initiate M-Pesa payment. Please try again.",
         },
         { status: 400 }
