@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Plus, X } from "lucide-react";
+import { ArrowLeft, Plus, X, Sparkles, Loader2 } from "lucide-react";
 
 export default function NewProjectPage() {
   const router = useRouter();
@@ -17,15 +17,20 @@ export default function NewProjectPage() {
     imageUrls: [""],
   });
   const [loading, setLoading] = useState(false);
+  const [generating, setGenerating] = useState(false);
   const [error, setError] = useState("");
+  const [aiSuccess, setAiSuccess] = useState(false);
 
-  const handleChange = (
+ const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value, type } = e.target;
     setForm({
       ...form,
-      [name]: type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
+      [name]:
+        type === "checkbox"
+          ? (e.target as HTMLInputElement).checked
+          : value,
     });
   };
 
@@ -42,6 +47,40 @@ export default function NewProjectPage() {
   const removeImageUrl = (index: number) => {
     const updated = form.imageUrls.filter((_, i) => i !== index);
     setForm({ ...form, imageUrls: updated });
+  };
+
+  const generateStory = async () => {
+    if (!form.title || !form.location) {
+      setError("Please fill in the title and location before generating a story.");
+      return;
+    }
+    setGenerating(true);
+    setError("");
+    setAiSuccess(false);
+
+    try {
+      const res = await fetch("/api/admin/generate-story", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title: form.title,
+          location: form.location,
+          area: form.area,
+          impact: form.impact,
+          description: form.description,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed to generate story");
+
+      setForm({ ...form, description: data.story });
+      setAiSuccess(true);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setGenerating(false);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -83,7 +122,10 @@ export default function NewProjectPage() {
       </nav>
 
       <div className="max-w-2xl mx-auto px-6 py-10">
-        <h1 className="text-2xl font-bold text-forest mb-8">Add New Project</h1>
+        <h1 className="text-2xl font-bold text-forest mb-2">Add New Project</h1>
+        <p className="text-forest/50 font-body text-sm mb-8">
+          Fill in the details below. Use the AI button to generate a beautiful impact story automatically. ✨
+        </p>
 
         <div className="card p-8">
           {error && (
@@ -108,21 +150,6 @@ export default function NewProjectPage() {
               />
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-forest mb-2 font-body">
-                Description <span className="text-amber-wamiti">*</span>
-              </label>
-              <textarea
-                name="description"
-                value={form.description}
-                onChange={handleChange}
-                required
-                rows={5}
-                placeholder="Describe the project, what was done, and who it helped..."
-                className="w-full border border-cream-dark rounded-xl px-4 py-3 font-body text-sm text-forest placeholder:text-forest/30 focus:outline-none focus:ring-2 focus:ring-primary/30 bg-warm-white resize-none"
-              />
-            </div>
-
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-forest mb-2 font-body">
@@ -138,7 +165,6 @@ export default function NewProjectPage() {
                   className="w-full border border-cream-dark rounded-xl px-4 py-3 font-body text-sm text-forest placeholder:text-forest/30 focus:outline-none focus:ring-2 focus:ring-primary/30 bg-warm-white"
                 />
               </div>
-
               <div>
                 <label className="block text-sm font-medium text-forest mb-2 font-body">
                   Area
@@ -166,6 +192,53 @@ export default function NewProjectPage() {
                 placeholder="e.g. 500+ households with clean water access"
                 className="w-full border border-cream-dark rounded-xl px-4 py-3 font-body text-sm text-forest placeholder:text-forest/30 focus:outline-none focus:ring-2 focus:ring-primary/30 bg-warm-white"
               />
+            </div>
+
+            {/* Description + AI Generator */}
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <label className="block text-sm font-medium text-forest font-body">
+                  Project Story <span className="text-amber-wamiti">*</span>
+                </label>
+                <button
+                  type="button"
+                  onClick={generateStory}
+                  disabled={generating}
+                  className="flex items-center gap-1.5 bg-forest text-white text-xs font-body font-medium px-4 py-2 rounded-full hover:bg-forest-light transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  {generating ? (
+                    <>
+                      <Loader2 className="w-3 h-3 animate-spin" />
+                      Generating...
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="w-3 h-3" />
+                      Generate with AI
+                    </>
+                  )}
+                </button>
+              </div>
+
+              {aiSuccess && (
+                <div className="bg-primary/10 border border-primary/20 text-primary text-xs font-body px-3 py-2 rounded-lg mb-2 flex items-center gap-2">
+                  <Sparkles className="w-3 h-3" />
+                  AI story generated! Feel free to edit it below.
+                </div>
+              )}
+
+              <textarea
+                name="description"
+                value={form.description}
+                onChange={handleChange}
+                required
+                rows={8}
+                placeholder="Describe the project... or click 'Generate with AI' above to auto-generate a beautiful story!"
+                className="w-full border border-cream-dark rounded-xl px-4 py-3 font-body text-sm text-forest placeholder:text-forest/30 focus:outline-none focus:ring-2 focus:ring-primary/30 bg-warm-white resize-none"
+              />
+              <p className="text-forest/30 font-body text-xs mt-1">
+                Tip: Fill in title, location and impact first for the best AI results.
+              </p>
             </div>
 
             {/* Image URLs */}
@@ -204,7 +277,6 @@ export default function NewProjectPage() {
               </button>
             </div>
 
-            {/* Featured */}
             <div className="flex items-center gap-3">
               <input
                 type="checkbox"
