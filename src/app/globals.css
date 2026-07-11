@@ -10,21 +10,29 @@
   }
 
   body {
-    @apply bg-warm-white text-forest font-body;
+    @apply bg-white text-navy font-body;
   }
 
   h1, h2, h3, h4 {
-    @apply font-display text-forest;
+    @apply font-display text-navy;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-amber-wamiti hover:bg-amber-dark text-white font-body font-medium px-8 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5;
+    @apply bg-primary hover:bg-primary-dark text-white font-body font-medium px-8 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5;
+  }
+
+  .btn-purple {
+    @apply bg-purple-wamiti hover:bg-purple-dark text-white font-body font-medium px-8 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5;
   }
 
   .btn-outline {
     @apply border-2 border-primary text-primary hover:bg-primary hover:text-white font-body font-medium px-8 py-3 rounded-full transition-all duration-300;
+  }
+
+  .btn-gold {
+    @apply bg-gold hover:bg-gold-dark text-white font-body font-medium px-8 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5;
   }
 
   .section-padding {
@@ -32,16 +40,40 @@
   }
 
   .card {
-    @apply bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden;
+    @apply bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-lavender-dark;
+  }
+
+  .card-gradient {
+    @apply bg-gradient-to-br from-primary to-purple-wamiti rounded-2xl shadow-md overflow-hidden text-white;
   }
 
   .page-hero {
     @apply relative h-[70vh] flex items-center justify-center overflow-hidden;
+  }
+
+  .highlight-blue {
+    @apply text-primary font-semibold;
+  }
+
+  .highlight-purple {
+    @apply text-purple-wamiti font-semibold;
+  }
+
+  .section-blue {
+    @apply bg-lavender;
+  }
+
+  .section-dark {
+    @apply bg-navy text-white;
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-purple-wamiti bg-clip-text text-transparent;
   }
 }

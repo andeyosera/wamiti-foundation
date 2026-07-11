@@ -9,27 +9,35 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Wamiti Foundation palette
         primary: {
-          DEFAULT: "#7C9E7E", // Soft sage green
-          light: "#A8C5AA",
-          dark: "#5A7A5C",
+          DEFAULT: "#2563EB",
+          light: "#60A5FA",
+          dark: "#1D4ED8",
         },
-        amber: {
-          wamiti: "#D4913A", // Warm amber CTA
-          light: "#E8B06A",
-          dark: "#B5742A",
+        purple: {
+          wamiti: "#7C3AED",
+          light: "#A78BFA",
+          dark: "#5B21B6",
         },
-        forest: {
-          DEFAULT: "#2D4A2D", // Deep forest headings
-          light: "#3D6B3D",
+        navy: {
+          DEFAULT: "#1E1B4B",
+          light: "#312E81",
         },
-        cream: {
-          DEFAULT: "#F5F0E8", // Section backgrounds
-          dark: "#EDE6D6",
+        lavender: {
+          DEFAULT: "#EEF2FF",
+          dark: "#E0E7FF",
+        },
+        sky: {
+          wamiti: "#DBEAFE",
+          dark: "#BFDBFE",
+        },
+        gold: {
+          DEFAULT: "#F59E0B",
+          light: "#FCD34D",
+          dark: "#D97706",
         },
         warm: {
-          white: "#FAFAF8", // Main background
+          white: "#FFFFFF",
         },
       },
       fontFamily: {
@@ -37,8 +45,12 @@ const config: Config = {
         body: ["Inter", "system-ui", "sans-serif"],
       },
       backgroundImage: {
-        "gradient-peaceful":
-          "linear-gradient(135deg, #F5F0E8 0%, #FAFAF8 50%, #E8F0E8 100%)",
+        "gradient-hero":
+          "linear-gradient(135deg, #1E1B4B 0%, #2563EB 50%, #7C3AED 100%)",
+        "gradient-section":
+          "linear-gradient(135deg, #EEF2FF 0%, #DBEAFE 100%)",
+        "gradient-card":
+          "linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)",
       },
       animation: {
         "fade-in": "fadeIn 0.8s ease-in-out",

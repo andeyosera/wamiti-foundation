@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { prisma } from "@/lib/prisma";
-import { MapPin } from "lucide-react";
+import { MapPin, Images } from "lucide-react";
+import Link from "next/link";
 
 export const revalidate = 60;
 
@@ -11,7 +12,12 @@ export default async function GalleryPage() {
 
   const allImages = projects.flatMap((project) =>
     project.imageUrls
-      .filter((url) => url && url !== "N/A" && (url.startsWith("/") || url.startsWith("http")))
+      .filter(
+        (url) =>
+          url &&
+          url !== "N/A" &&
+          (url.startsWith("/") || url.startsWith("http"))
+      )
       .map((url) => ({
         url,
         title: project.title,
@@ -23,13 +29,14 @@ export default async function GalleryPage() {
   return (
     <>
       {/* PAGE HEADER */}
-      <section className="pt-32 pb-16 bg-forest text-white section-padding">
+      <section className="pt-32 pb-16 bg-gradient-to-br from-navy via-primary to-purple-wamiti text-white section-padding">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-primary-light font-body text-sm tracking-widest uppercase mb-3">
+          <span className="inline-block bg-white/10 border border-white/20 text-white font-body text-xs font-semibold tracking-widest uppercase px-4 py-2 rounded-full mb-4">
             Our Gallery
-          </p>
+          </span>
           <h1 className="text-4xl md:text-5xl font-bold text-balance mb-6">
-            Moments of Impact
+            Moments of{" "}
+            <span className="text-gold-light">Impact</span>
           </h1>
           <p className="text-white/70 font-body leading-relaxed max-w-2xl mx-auto">
             Every photograph tells a story of hope, effort, and community.
@@ -39,20 +46,22 @@ export default async function GalleryPage() {
       </section>
 
       {/* GALLERY GRID */}
-      <section className="section-padding bg-warm-white">
+      <section className="section-padding bg-white">
         <div className="max-w-6xl mx-auto">
           {allImages.length === 0 ? (
             <div className="text-center py-20">
-              <p className="text-forest/40 font-body">
+              <Images className="w-12 h-12 text-primary/30 mx-auto mb-4" />
+              <p className="text-navy/50 font-body">
                 Gallery coming soon. Check back shortly!
               </p>
             </div>
           ) : (
             <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
               {allImages.map((image, i) => (
-                <div
+                <Link
                   key={i}
-                  className="break-inside-avoid card overflow-hidden group"
+                  href={`/projects/${image.projectId}`}
+                  className="break-inside-avoid card overflow-hidden group block"
                 >
                   <div className="relative overflow-hidden">
                     <Image
@@ -62,7 +71,7 @@ export default async function GalleryPage() {
                       height={400}
                       className="w-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-forest/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                       <p className="text-white font-display font-semibold text-sm">
                         {image.title}
@@ -73,10 +82,31 @@ export default async function GalleryPage() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           )}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section-padding bg-lavender text-center">
+        <div className="max-w-2xl mx-auto">
+          <h2 className="text-2xl font-bold mb-4 text-navy">
+            Be Part of the Next Story
+          </h2>
+          <p className="text-navy/60 font-body mb-8 leading-relaxed">
+            Every contribution creates a new moment worth capturing.
+            Join us in writing the next chapter.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/contribute" className="btn-primary">
+              Contribute Now
+            </Link>
+            <Link href="/volunteer" className="btn-outline">
+              Volunteer With Us
+            </Link>
+          </div>
         </div>
       </section>
     </>

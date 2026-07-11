@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Heart, Smartphone, CheckCircle, Leaf } from "lucide-react";
+import { Heart, Smartphone, CheckCircle, Leaf, GraduationCap, TreePine, Users } from "lucide-react";
 
 const presetAmounts = [100, 500, 1000, 2500, 5000, 10000];
 
@@ -66,15 +66,16 @@ export default function ContributePage() {
   return (
     <>
       {/* PAGE HEADER */}
-      <section className="pt-32 pb-16 bg-cream section-padding">
+      <section className="pt-32 pb-16 bg-gradient-to-br from-navy via-primary to-purple-wamiti text-white section-padding">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-primary font-body text-sm tracking-widest uppercase mb-3">
+          <span className="inline-block bg-white/10 border border-white/20 text-white font-body text-xs font-semibold tracking-widest uppercase px-4 py-2 rounded-full mb-4">
             Give Back
-          </p>
+          </span>
           <h1 className="text-4xl md:text-5xl font-bold text-balance mb-6">
-            Make a Contribution
+            Make a{" "}
+            <span className="text-gold-light">Contribution</span>
           </h1>
-          <p className="text-forest/60 font-body leading-relaxed max-w-xl mx-auto">
+          <p className="text-white/70 font-body leading-relaxed max-w-xl mx-auto">
             Every shilling you give goes directly into the communities of
             Shinoyi Shikomari — planting trees, uplifting families, and
             building hope that lasts.
@@ -83,43 +84,55 @@ export default function ContributePage() {
       </section>
 
       {/* CONTRIBUTION FORM */}
-      <section className="section-padding bg-warm-white">
-        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+      <section className="section-padding bg-white">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           {/* Left — Why Give */}
           <div>
-            <h2 className="text-2xl font-bold mb-6">Your Impact</h2>
-            <div className="space-y-5">
+            <h2 className="text-2xl font-bold mb-6 text-navy">Your Impact</h2>
+            <div className="space-y-4">
               {[
                 {
+                  icon: TreePine,
                   amount: "KES 100",
                   impact: "Plants 2 indigenous trees in Shikomari",
+                  color: "from-primary to-primary-dark",
                 },
                 {
+                  icon: GraduationCap,
                   amount: "KES 500",
                   impact: "Provides a child with school supplies for a term",
+                  color: "from-purple-wamiti to-purple-dark",
                 },
                 {
+                  icon: Heart,
                   amount: "KES 1,000",
                   impact: "Feeds a family for a week through our food program",
+                  color: "from-gold to-gold-dark",
                 },
                 {
+                  icon: Users,
                   amount: "KES 5,000",
                   impact: "Funds a youth skills training session",
+                  color: "from-primary to-purple-wamiti",
                 },
                 {
+                  icon: Leaf,
                   amount: "KES 10,000",
                   impact: "Contributes to a community borehole project",
+                  color: "from-navy to-primary",
                 },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-4">
-                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5">
-                    <Leaf className="w-4 h-4 text-primary" />
+                  <div
+                    className={`w-10 h-10 bg-gradient-to-br ${item.color} rounded-xl flex items-center justify-center shrink-0`}
+                  >
+                    <item.icon className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <span className="font-semibold text-amber-wamiti text-sm">
+                    <span className="font-bold text-primary text-sm">
                       {item.amount}
                     </span>
-                    <p className="text-forest/60 font-body text-sm">
+                    <p className="text-navy/60 font-body text-sm">
                       {item.impact}
                     </p>
                   </div>
@@ -127,9 +140,9 @@ export default function ContributePage() {
               ))}
             </div>
 
-            <div className="mt-8 bg-forest rounded-2xl p-6 text-white">
-              <Smartphone className="w-6 h-6 text-primary-light mb-3" />
-              <h4 className="font-semibold mb-2">Pay via M-Pesa</h4>
+            <div className="mt-8 card-gradient p-6 bg-gradient-to-br from-navy to-primary">
+              <Smartphone className="w-6 h-6 text-gold-light mb-3" />
+              <h4 className="font-semibold text-white mb-2">Pay via M-Pesa</h4>
               <p className="text-white/70 font-body text-sm leading-relaxed">
                 After submitting, you'll receive an M-Pesa prompt on your
                 phone. Simply enter your PIN to complete the contribution.
@@ -142,11 +155,13 @@ export default function ContributePage() {
           <div className="card p-8">
             {success ? (
               <div className="text-center py-12">
-                <CheckCircle className="w-14 h-14 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-forest mb-2">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary to-purple-wamiti rounded-full flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-navy mb-2">
                   Thank You! 🌿
                 </h3>
-                <p className="text-forest/60 font-body text-sm leading-relaxed">
+                <p className="text-navy/60 font-body text-sm leading-relaxed">
                   Your M-Pesa prompt has been sent. Please check your phone
                   and enter your PIN to complete the contribution. You are
                   making a real difference!
@@ -160,7 +175,7 @@ export default function ContributePage() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
-                <h2 className="text-xl font-bold text-forest mb-6">
+                <h2 className="text-xl font-bold text-navy mb-6">
                   Your Details
                 </h2>
 
@@ -170,57 +185,31 @@ export default function ContributePage() {
                   </div>
                 )}
 
-                <div>
-                  <label className="block text-sm font-medium text-forest mb-2 font-body">
-                    Full Name <span className="text-amber-wamiti">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={form.name}
-                    onChange={handleChange}
-                    required
-                    placeholder="Your full name"
-                    className="w-full border border-cream-dark rounded-xl px-4 py-3 font-body text-sm text-forest placeholder:text-forest/30 focus:outline-none focus:ring-2 focus:ring-primary/30 bg-warm-white"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-forest mb-2 font-body">
-                    Email Address <span className="text-amber-wamiti">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    required
-                    placeholder="your@email.com"
-                    className="w-full border border-cream-dark rounded-xl px-4 py-3 font-body text-sm text-forest placeholder:text-forest/30 focus:outline-none focus:ring-2 focus:ring-primary/30 bg-warm-white"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-forest mb-2 font-body">
-                    M-Pesa Phone Number{" "}
-                    <span className="text-amber-wamiti">*</span>
-                  </label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={form.phone}
-                    onChange={handleChange}
-                    required
-                    placeholder="0712 345 678"
-                    className="w-full border border-cream-dark rounded-xl px-4 py-3 font-body text-sm text-forest placeholder:text-forest/30 focus:outline-none focus:ring-2 focus:ring-primary/30 bg-warm-white"
-                  />
-                </div>
+                {[
+                  { name: "name", label: "Full Name", type: "text", placeholder: "Your full name" },
+                  { name: "email", label: "Email Address", type: "email", placeholder: "your@email.com" },
+                  { name: "phone", label: "M-Pesa Phone Number", type: "tel", placeholder: "0712 345 678" },
+                ].map((field) => (
+                  <div key={field.name}>
+                    <label className="block text-sm font-medium text-navy mb-2 font-body">
+                      {field.label} <span className="text-primary">*</span>
+                    </label>
+                    <input
+                      type={field.type}
+                      name={field.name}
+                      value={form[field.name as keyof typeof form]}
+                      onChange={handleChange}
+                      required
+                      placeholder={field.placeholder}
+                      className="w-full border border-lavender-dark rounded-xl px-4 py-3 font-body text-sm text-navy placeholder:text-navy/30 focus:outline-none focus:ring-2 focus:ring-primary/30 bg-white"
+                    />
+                  </div>
+                ))}
 
                 {/* Preset Amounts */}
                 <div>
-                  <label className="block text-sm font-medium text-forest mb-3 font-body">
-                    Select Amount (KES){" "}
-                    <span className="text-amber-wamiti">*</span>
+                  <label className="block text-sm font-medium text-navy mb-3 font-body">
+                    Select Amount (KES) <span className="text-primary">*</span>
                   </label>
                   <div className="grid grid-cols-3 gap-2 mb-3">
                     {presetAmounts.map((amount) => (
@@ -229,10 +218,9 @@ export default function ContributePage() {
                         type="button"
                         onClick={() => selectAmount(amount)}
                         className={`py-2 px-3 rounded-xl text-sm font-body font-medium border transition-all duration-200 ${
-                          form.amount === amount.toString() &&
-                          !form.customAmount
-                            ? "bg-primary text-white border-primary"
-                            : "border-cream-dark text-forest hover:border-primary hover:text-primary"
+                          form.amount === amount.toString() && !form.customAmount
+                            ? "bg-gradient-to-r from-primary to-purple-wamiti text-white border-transparent"
+                            : "border-lavender-dark text-navy hover:border-primary hover:text-primary"
                         }`}
                       >
                         {amount.toLocaleString()}
@@ -246,12 +234,12 @@ export default function ContributePage() {
                     onChange={handleChange}
                     placeholder="Or enter custom amount"
                     min="1"
-                    className="w-full border border-cream-dark rounded-xl px-4 py-3 font-body text-sm text-forest placeholder:text-forest/30 focus:outline-none focus:ring-2 focus:ring-primary/30 bg-warm-white"
+                    className="w-full border border-lavender-dark rounded-xl px-4 py-3 font-body text-sm text-navy placeholder:text-navy/30 focus:outline-none focus:ring-2 focus:ring-primary/30 bg-white"
                   />
                 </div>
 
                 {finalAmount > 0 && (
-                  <div className="bg-primary/10 rounded-xl px-4 py-3">
+                  <div className="bg-lavender rounded-xl px-4 py-3">
                     <p className="text-primary font-body text-sm font-medium">
                       You are contributing:{" "}
                       <span className="font-bold">
@@ -264,14 +252,12 @@ export default function ContributePage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="btn-primary w-full flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="btn-primary w-full flex items-center justify-center gap-2 disabled:opacity-60"
                 >
                   {loading ? (
                     "Sending M-Pesa Prompt..."
                   ) : (
-                    <>
-                      Contribute Now <Heart className="w-4 h-4" />
-                    </>
+                    <><Heart className="w-4 h-4" /> Contribute Now</>
                   )}
                 </button>
               </form>
