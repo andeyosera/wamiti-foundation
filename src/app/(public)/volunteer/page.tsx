@@ -76,7 +76,7 @@ export default function VolunteerPage() {
             <span className="text-gold-light">Volunteer</span>
           </h1>
           <p className="text-white/70 font-body leading-relaxed max-w-2xl mx-auto">
-            You don't need much — just a willing heart. Whether you have
+           You don&apos;t need much — just a willing heart. Whether you have
             an hour or a season to give, there is a place for you in the
             Wamiti family.
           </p>
@@ -154,7 +154,7 @@ export default function VolunteerPage() {
                     Volunteer Sign-Up
                   </h2>
                   <p className="text-navy/50 font-body text-sm">
-                    Fill in your details and we'll reach out shortly.
+                    Fill in your details and we&apos;ll reach out shortly.
                   </p>
                 </div>
 
@@ -205,7 +205,7 @@ export default function VolunteerPage() {
 
                 <div>
                   <label className="block text-sm font-medium text-navy mb-2 font-body">
-                    Skills / How You'd Like to Help{" "}
+                    Skills / How You&apos;d Like to Help{" "}
                     <span className="text-navy/40 font-normal">(optional)</span>
                   </label>
                   <select

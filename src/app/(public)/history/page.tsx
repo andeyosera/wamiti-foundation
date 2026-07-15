@@ -7,7 +7,7 @@ const timeline = [
     year: "2018",
     title: "The Seed is Planted",
     description:
-      "What began as a personal conviction grew into a community movement. Our founder began tree planting initiatives across Shinoyi Shikomari, earning the affectionate title 'Mheshimiwa wa Miti' — a name that would come to define a legacy.",
+      "What began as a personal conviction grew into a community movement. Our founder began tree planting initiatives across Shinoyi Shikomari, earning the affectionate title Mheshimiwa wa Miti — a name that would come to define a legacy.",
     color: "from-primary to-primary-dark",
   },
   {
@@ -35,7 +35,7 @@ const timeline = [
     year: "2022",
     title: "Wamiti Foundation is Born",
     description:
-      "After years of grassroots work, Wamiti Foundation was formally established — giving our community initiatives a home, a name, and a structure to grow from. The foundation's mandate: education, environment, youth, and agriculture.",
+      "After years of grassroots work, Wamiti Foundation was formally established — giving our community initiatives a home, a name, and a structure to grow from. The foundation mandate: education, environment, youth, and agriculture.",
     color: "from-primary to-primary-dark",
   },
   {

@@ -13,16 +13,11 @@ export async function POST(request: Request) {
     const { ResultCode, CallbackMetadata } = Body.stkCallback;
 
     if (ResultCode === 0 && CallbackMetadata) {
-      const items = CallbackMetadata.Item;
-      const mpesaCode = items.find(
-        (i: any) => i.Name === "MpesaReceiptNumber"
-      )?.Value;
-      const phone = items.find(
-        (i: any) => i.Name === "PhoneNumber"
-      )?.Value?.toString();
+      const items = CallbackMetadata.Item as Array<{ Name: string; Value: string | number }>;
+      const mpesaCode = items.find((i) => i.Name === "MpesaReceiptNumber")?.Value as string;
+      const phone = items.find((i) => i.Name === "PhoneNumber")?.Value?.toString();
 
       if (mpesaCode && phone) {
-        // Find the pending contribution by phone and update it
         await prisma.contribution.updateMany({
           where: {
             phone: { contains: phone.slice(-9) },
@@ -37,8 +32,7 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error("M-Pesa callback error:", error);
+  } catch {
     return NextResponse.json({ success: false });
   }
 }
