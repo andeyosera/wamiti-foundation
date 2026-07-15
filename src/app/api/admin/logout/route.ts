@@ -1,9 +1,11 @@
+export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
+
 import { NextResponse } from "next/server";
 
 export async function GET() {
   const response = NextResponse.redirect(
-    new URL("/admin", process.env.NEXT_PUBLIC_APP_URL!)
+    "https://wamiti-foundation-git-main-andeyoseras-projects.vercel.app/admin"
   );
   response.cookies.delete("admin_token");
   return response;
