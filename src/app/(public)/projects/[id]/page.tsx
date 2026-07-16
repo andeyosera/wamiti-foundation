@@ -12,12 +12,32 @@ export default async function ProjectDetailPage({
 }: {
   params: { id: string };
 }) {
-  const project = await prisma.project.findUnique({
-    where: { id: params.id },
-  });
+  let project;
+  
+  try {
+    project = await prisma.project.findUnique({
+      where: { id: params.id },
+    });
+  } catch (error) {
+    console.error("Project fetch error:", error);
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-white">
+        <div className="text-center px-6">
+          <h1 className="text-2xl font-bold text-navy mb-4">
+            Unable to load project
+          </h1>
+          <p className="text-navy/60 font-body mb-6">
+            Please try again in a moment.
+          </p>
+          <Link href="/projects" className="btn-primary">
+            Back to Projects
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   if (!project) return notFound();
-
   // Budget data per project type
   const getBudgetData = (title: string) => {
     if (title.toLowerCase().includes("chicken")) {
