@@ -1,3 +1,4 @@
+
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 import Image from "next/image";
@@ -5,8 +6,11 @@ import Link from "next/link";
 import { MapPin, ArrowLeft, Leaf, TrendingUp } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
-import ProjectCharts from "@/components/sections/ProjectCharts";
-
+import nextDynamic from "next/dynamic";
+const ProjectCharts = nextDynamic(
+  () => import("@/components/sections/ProjectCharts"),
+  { ssr: false }
+);
 export default async function ProjectDetailPage({
   params,
 }: {
