@@ -5,52 +5,54 @@ import { Leaf, Heart, Users, TreePine, ArrowRight, GraduationCap, Sprout } from 
 export default function HomePage() {
   return (
     <>
-      {/* HERO SECTION */}
-      <section className="relative h-screen">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/hero/homepage.jpg"
-            alt="Wamiti Foundation Community"
-            fill
-            priority
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-navy/90 via-primary/70 to-purple-wamiti/80" />
-        </div>
+{/* HERO SECTION */}
+<section className="relative h-screen">
+  <div className="absolute inset-0">
+    <Image
+      src="/images/hero/homepage.jpg"
+      alt="Wamiti Foundation Community"
+      fill
+      priority
+      className="object-cover"
+    />
+    {/* Lighter, more elegant overlay */}
+    <div className="absolute inset-0 bg-gradient-to-r from-navy/85 via-navy/60 to-transparent" />
+  </div>
 
-        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto h-full flex flex-col items-center justify-center animate-fade-in">
-          <span className="inline-block bg-white/10 backdrop-blur-sm border border-white/20 text-white text-xs font-body font-medium px-4 py-2 rounded-full mb-6 tracking-widest uppercase">
-            Wamiti Foundation — Shinoyi Shikomari
-          </span>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 text-balance leading-tight">
-            Touching Lives,{" "}
-            <span className="text-gold-light">Growing Hope</span>
-          </h1>
-          <p className="text-white/90 font-body text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
-            From tree planting to school empowerment, youth development to
-            agricultural uplift — we are rooted in Shinoyi Shikomari and
-            committed to transforming every corner of our community.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/projects" className="btn-gold">
-              See Our Work
-            </Link>
-            <Link
-              href="/contribute"
-              className="bg-white/10 backdrop-blur-sm border-2 border-white text-white font-body font-medium px-8 py-3 rounded-full hover:bg-white hover:text-navy transition-all duration-300"
-            >
-              Make a Contribution
-            </Link>
-          </div>
-        </div>
+  <div className="relative z-10 h-full flex flex-col justify-center px-6 md:px-16 lg:px-24 max-w-7xl mx-auto animate-fade-in">
+    <div className="max-w-2xl">
+      <span className="inline-block bg-white/10 backdrop-blur-sm border border-white/20 text-white text-xs font-body font-medium px-4 py-2 rounded-full mb-6 tracking-widest uppercase">
+        Wamiti Foundation — Shinoyi Shikomari
+      </span>
+      <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight">
+        Touching Lives,{" "}
+        <span className="text-gold">Growing Hope</span>
+      </h1>
+      <p className="text-white/85 font-body text-lg md:text-xl mb-10 leading-relaxed">
+        From tree planting to school empowerment, youth development
+        to agricultural uplift — rooted in Shinoyi Shikomari and
+        committed to transforming every corner of our community.
+      </p>
+      <div className="flex flex-col sm:flex-row gap-4">
+        <Link href="/projects" className="btn-gold">
+          See Our Work
+        </Link>
+        <Link
+          href="/contribute"
+          className="bg-white/15 backdrop-blur-sm border-2 border-white/70 text-white font-body font-medium px-8 py-3 rounded-full hover:bg-white hover:text-navy transition-all duration-300"
+        >
+          Make a Contribution
+        </Link>
+      </div>
+    </div>
+  </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
-          <div className="w-px h-8 bg-white/40" />
-          <div className="w-2 h-2 rounded-full bg-white/60" />
-        </div>
-      </section>
-
+  {/* Scroll indicator */}
+  <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+    <p className="text-white/50 font-body text-xs tracking-widest uppercase">Scroll</p>
+    <div className="w-px h-8 bg-white/40" />
+  </div>
+</section>
       {/* STATS SECTION */}
       <section className="bg-gradient-to-r from-primary to-purple-wamiti text-white py-12">
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -150,7 +152,7 @@ export default function HomePage() {
             <p className="text-navy/70 font-body leading-relaxed mb-4">
               Wamiti Foundation was born from a deep love for the people
               and land of <span className="highlight-blue">Shinoyi Shikomari Ward</span>.
-              We believe that real development is not handed down — it
+              We believe that real development is not handed down it
               grows from within communities, like a tree that takes root
               and stands for generations.
             </p>
