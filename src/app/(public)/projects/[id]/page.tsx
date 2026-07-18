@@ -6,9 +6,9 @@ import Link from "next/link";
 import { MapPin, ArrowLeft, Leaf, TrendingUp } from "lucide-react";
 import { supabaseAdmin } from "@/lib/supabase";
 import { notFound } from "next/navigation";
-import dynamic from "next/dynamic";
+import dynamicImport from "next/dynamic";
 
-const ProjectCharts = dynamic(
+const ProjectCharts = dynamicImport(
   () => import("@/components/sections/ProjectCharts"),
   { ssr: false }
 );
