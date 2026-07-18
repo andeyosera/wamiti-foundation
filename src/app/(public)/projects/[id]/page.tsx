@@ -7,6 +7,7 @@ import { MapPin, ArrowLeft, Leaf, TrendingUp } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import nextDynamic from "next/dynamic";
+
 const ProjectCharts = nextDynamic(
   () => import("@/components/sections/ProjectCharts"),
   { ssr: false }
