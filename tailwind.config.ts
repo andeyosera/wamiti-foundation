@@ -41,9 +41,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ["Playfair Display", "Georgia", "serif"],
-        body: ["Inter", "system-ui", "sans-serif"],
-      },
+  display: ["var(--font-playfair)", "Georgia", "serif"],
+  body: ["var(--font-inter)", "system-ui", "sans-serif"],
+},
       backgroundImage: {
         "gradient-hero":
           "linear-gradient(135deg, #1E1B4B 0%, #2563EB 50%, #7C3AED 100%)",
