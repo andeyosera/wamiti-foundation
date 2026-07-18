@@ -1,49 +1,31 @@
-
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin, ArrowLeft, Leaf, TrendingUp } from "lucide-react";
-import { prisma } from "@/lib/prisma";
+import { supabaseAdmin } from "@/lib/supabase";
 import { notFound } from "next/navigation";
-import nextDynamic from "next/dynamic";
+import dynamic from "next/dynamic";
 
-const ProjectCharts = nextDynamic(
+const ProjectCharts = dynamic(
   () => import("@/components/sections/ProjectCharts"),
   { ssr: false }
 );
+
 export default async function ProjectDetailPage({
   params,
 }: {
   params: { id: string };
 }) {
-  let project;
-  
-  try {
-    project = await prisma.project.findUnique({
-      where: { id: params.id },
-    });
-  } catch (error) {
-    console.error("Project fetch error:", error);
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-white">
-        <div className="text-center px-6">
-          <h1 className="text-2xl font-bold text-navy mb-4">
-            Unable to load project
-          </h1>
-          <p className="text-navy/60 font-body mb-6">
-            Please try again in a moment.
-          </p>
-          <Link href="/projects" className="btn-primary">
-            Back to Projects
-          </Link>
-        </div>
-      </div>
-    );
-  }
+  const { data: project, error } = await supabaseAdmin
+    .from("Project")
+    .select("*")
+    .eq("id", params.id)
+    .single();
 
-  if (!project) return notFound();
-  // Budget data per project type
+  if (error || !project) return notFound();
+
   const getBudgetData = (title: string) => {
     if (title.toLowerCase().includes("chicken")) {
       return {
@@ -56,7 +38,7 @@ export default async function ProjectDetailPage({
         ],
       };
     }
-    if (title.toLowerCase().includes("school") || title.toLowerCase().includes("uniform")) {
+    if (title.toLowerCase().includes("school")) {
       return {
         total: 230000,
         items: [
@@ -102,8 +84,8 @@ export default async function ProjectDetailPage({
 
   const budgetData = getBudgetData(project.title);
 
-  const validImages = project.imageUrls.filter(
-    (url) =>
+  const validImages = (project.imageUrls || []).filter(
+    (url: string) =>
       url &&
       url !== "N/A" &&
       (url.startsWith("/") || url.startsWith("http"))
@@ -111,7 +93,6 @@ export default async function ProjectDetailPage({
 
   return (
     <>
-      {/* HERO IMAGE */}
       <section className="relative h-[60vh] mt-0">
         <Image
           src={validImages[0] || "/images/hero/homepage.jpg"}
@@ -122,7 +103,6 @@ export default async function ProjectDetailPage({
         />
         <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/50 to-transparent" />
 
-        {/* Back Button */}
         <div className="absolute top-24 left-6 md:left-12">
           <Link
             href="/projects"
@@ -132,14 +112,11 @@ export default async function ProjectDetailPage({
           </Link>
         </div>
 
-        {/* Title overlay */}
         <div className="absolute bottom-0 left-0 right-0 px-6 md:px-12 pb-10">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-1 text-primary-light text-xs font-body mb-3">
               <MapPin className="w-3 h-3" />
-              <span>
-                {project.location} — {project.area}
-              </span>
+              <span>{project.location} — {project.area}</span>
             </div>
             <h1 className="text-3xl md:text-5xl font-display font-bold text-white text-balance">
               {project.title}
@@ -148,11 +125,9 @@ export default async function ProjectDetailPage({
         </div>
       </section>
 
-      {/* PROJECT CONTENT */}
       <section className="section-padding bg-white">
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {/* Main Content */}
             <div className="md:col-span-2 space-y-8">
               <div>
                 <h2 className="text-xl font-semibold mb-4 text-navy">
@@ -163,7 +138,6 @@ export default async function ProjectDetailPage({
                 </p>
               </div>
 
-              {/* Budget Breakdown */}
               <div>
                 <h2 className="text-xl font-semibold mb-6 text-navy flex items-center gap-2">
                   <TrendingUp className="w-5 h-5 text-primary" />
@@ -200,9 +174,7 @@ export default async function ProjectDetailPage({
                     ))}
                   </div>
                   <div className="border-t border-lavender-dark pt-4 flex justify-between items-center">
-                    <span className="font-semibold text-navy">
-                      Total Budget
-                    </span>
+                    <span className="font-semibold text-navy">Total Budget</span>
                     <span className="text-xl font-bold gradient-text">
                       KES {budgetData.total.toLocaleString()}
                     </span>
@@ -210,17 +182,15 @@ export default async function ProjectDetailPage({
                 </div>
               </div>
 
-              {/* Charts */}
               <ProjectCharts budgetData={budgetData} />
 
-              {/* Gallery */}
               {validImages.length > 1 && (
                 <div>
                   <h2 className="text-xl font-semibold mb-4 text-navy">
                     Project Gallery
                   </h2>
                   <div className="grid grid-cols-2 gap-4">
-                    {validImages.slice(1).map((url, i) => (
+                    {validImages.slice(1).map((url: string, i: number) => (
                       <div
                         key={i}
                         className="relative h-48 rounded-xl overflow-hidden"
@@ -238,9 +208,7 @@ export default async function ProjectDetailPage({
               )}
             </div>
 
-            {/* Sidebar */}
             <div className="space-y-6">
-              {/* Impact Box */}
               {project.impact && (
                 <div className="card-gradient p-6 bg-gradient-to-br from-primary to-purple-wamiti">
                   <Leaf className="w-6 h-6 text-white mb-3" />
@@ -251,22 +219,16 @@ export default async function ProjectDetailPage({
                 </div>
               )}
 
-              {/* Location Box */}
               <div className="card p-6">
                 <MapPin className="w-6 h-6 text-primary mb-3" />
                 <h4 className="font-semibold text-navy mb-2">Location</h4>
-                <p className="text-navy/60 font-body text-sm">
-                  {project.location}
-                </p>
+                <p className="text-navy/60 font-body text-sm">{project.location}</p>
                 <p className="text-navy/60 font-body text-sm">{project.area}</p>
               </div>
 
-              {/* Budget Summary */}
               <div className="card p-6">
                 <TrendingUp className="w-6 h-6 text-purple-wamiti mb-3" />
-                <h4 className="font-semibold text-navy mb-4">
-                  Budget Summary
-                </h4>
+                <h4 className="font-semibold text-navy mb-4">Budget Summary</h4>
                 <div className="space-y-2">
                   {budgetData.items.map((item, i) => (
                     <div key={i} className="flex justify-between items-center">
@@ -285,9 +247,7 @@ export default async function ProjectDetailPage({
                     </div>
                   ))}
                   <div className="border-t border-lavender-dark pt-2 mt-2 flex justify-between">
-                    <span className="text-navy font-semibold text-sm">
-                      Total
-                    </span>
+                    <span className="text-navy font-semibold text-sm">Total</span>
                     <span className="text-primary font-bold text-sm">
                       KES {budgetData.total.toLocaleString()}
                     </span>
@@ -295,18 +255,12 @@ export default async function ProjectDetailPage({
                 </div>
               </div>
 
-              {/* CTA Box */}
               <div className="card-gradient p-6 bg-gradient-to-br from-navy to-primary text-center">
-                <h4 className="font-semibold text-white mb-2">
-                  Support This Work
-                </h4>
+                <h4 className="font-semibold text-white mb-2">Support This Work</h4>
                 <p className="text-white/70 font-body text-sm mb-4">
                   Your contribution helps us do more of this.
                 </p>
-                <Link
-                  href="/contribute"
-                  className="btn-gold text-sm block text-center"
-                >
+                <Link href="/contribute" className="btn-gold text-sm block text-center">
                   Contribute Now
                 </Link>
               </div>
@@ -315,15 +269,12 @@ export default async function ProjectDetailPage({
         </div>
       </section>
 
-      {/* MORE PROJECTS */}
       <section className="section-padding bg-lavender text-center">
         <h3 className="text-2xl font-bold mb-4">See More Projects</h3>
         <p className="text-navy/60 font-body mb-8">
           Explore all the ways Wamiti Foundation is growing hope across the ward.
         </p>
-        <Link href="/projects" className="btn-primary">
-          View All Projects
-        </Link>
+        <Link href="/projects" className="btn-primary">View All Projects</Link>
       </section>
     </>
   );

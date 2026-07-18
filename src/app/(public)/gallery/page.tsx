@@ -1,25 +1,26 @@
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import Image from "next/image";
-import { prisma } from "@/lib/prisma";
+import { supabaseAdmin } from "@/lib/supabase";
 import { MapPin, Images } from "lucide-react";
 import Link from "next/link";
 
-export const revalidate = 60;
-
 export default async function GalleryPage() {
-  const projects = await prisma.project.findMany({
-    orderBy: { createdAt: "desc" },
-  });
+  const { data: projects } = await supabaseAdmin
+    .from("Project")
+    .select("*")
+    .order("createdAt", { ascending: false });
 
-  const allImages = projects.flatMap((project) =>
-    project.imageUrls
+  const allImages = (projects || []).flatMap((project) =>
+    (project.imageUrls || [])
       .filter(
-        (url) =>
+        (url: string) =>
           url &&
           url !== "N/A" &&
           (url.startsWith("/") || url.startsWith("http"))
       )
-      .map((url) => ({
+      .map((url: string) => ({
         url,
         title: project.title,
         location: project.location,
@@ -98,7 +99,6 @@ export default async function GalleryPage() {
           </h2>
           <p className="text-navy/60 font-body mb-8 leading-relaxed">
             Every contribution creates a new moment worth capturing.
-            Join us in writing the next chapter.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contribute" className="btn-primary">

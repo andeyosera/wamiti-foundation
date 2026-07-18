@@ -1,15 +1,18 @@
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin, ArrowRight, Leaf } from "lucide-react";
-import { prisma } from "@/lib/prisma";
-
-export const revalidate = 60;
+import { supabaseAdmin } from "@/lib/supabase";
 
 export default async function ProjectsPage() {
-  const projects = await prisma.project.findMany({
-    orderBy: { createdAt: "desc" },
-  });
+  const { data: projects, error } = await supabaseAdmin
+    .from("Project")
+    .select("*")
+    .order("createdAt", { ascending: false });
+
+  if (error) console.error("Projects error:", error);
 
   return (
     <>
@@ -34,7 +37,7 @@ export default async function ProjectsPage() {
       {/* PROJECTS GRID */}
       <section className="section-padding bg-white">
         <div className="max-w-6xl mx-auto">
-          {projects.length === 0 ? (
+          {!projects || projects.length === 0 ? (
             <div className="text-center py-20">
               <Leaf className="w-12 h-12 text-primary/30 mx-auto mb-4" />
               <p className="text-navy/50 font-body">
@@ -45,11 +48,10 @@ export default async function ProjectsPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {projects.map((project) => (
                 <div key={project.id} className="card group">
-                  {/* Image */}
                   <div className="relative h-56 overflow-hidden">
                     <Image
                       src={
-                        project.imageUrls[0] &&
+                        project.imageUrls?.[0] &&
                         project.imageUrls[0] !== "N/A" &&
                         (project.imageUrls[0].startsWith("/") ||
                           project.imageUrls[0].startsWith("http"))
@@ -67,8 +69,6 @@ export default async function ProjectsPage() {
                       </span>
                     )}
                   </div>
-
-                  {/* Content */}
                   <div className="p-6">
                     <div className="flex items-center gap-1 text-primary text-xs font-body mb-3">
                       <MapPin className="w-3 h-3" />
@@ -80,7 +80,6 @@ export default async function ProjectsPage() {
                     <p className="text-navy/60 font-body text-sm leading-relaxed mb-4 line-clamp-3">
                       {project.description}
                     </p>
-
                     {project.impact && (
                       <div className="bg-lavender rounded-lg px-4 py-2 mb-4">
                         <p className="text-primary text-xs font-body font-medium">
@@ -88,7 +87,6 @@ export default async function ProjectsPage() {
                         </p>
                       </div>
                     )}
-
                     <Link
                       href={`/projects/${project.id}`}
                       className="inline-flex items-center gap-1 text-primary font-body text-sm font-medium hover:gap-2 transition-all duration-300 group/link"
