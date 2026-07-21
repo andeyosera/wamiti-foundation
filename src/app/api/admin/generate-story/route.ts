@@ -1,4 +1,5 @@
 export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic";
 import Anthropic from "@anthropic-ai/sdk";
 import { NextResponse } from "next/server";
 
