@@ -2,11 +2,12 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 import Image from "next/image";
-import { supabaseAdmin } from "@/lib/supabase";
+import { getSupabaseAdmin } from "@/lib/supabase";
 import { MapPin, Images } from "lucide-react";
 import Link from "next/link";
 
 export default async function GalleryPage() {
+  const supabaseAdmin = getSupabaseAdmin();
   const { data: projects } = await supabaseAdmin
     .from("Project")
     .select("*")

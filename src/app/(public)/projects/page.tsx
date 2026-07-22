@@ -4,16 +4,20 @@ export const revalidate = 0;
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin, ArrowRight, Leaf } from "lucide-react";
-import { supabaseAdmin } from "@/lib/supabase";
+import { getSupabaseAdmin } from "@/lib/supabase";
 
 export default async function ProjectsPage() {
-  const { data: projects, error } = await supabaseAdmin
+  const supabaseAdmin = getSupabaseAdmin();
+  if (!supabaseAdmin) return (
+    <div className="min-h-screen flex items-center justify-center">
+      <p className="text-navy/50 font-body">Projects coming soon!</p>
+    </div>
+  );
+
+  const projects = (await supabaseAdmin
     .from("Project")
     .select("*")
-    .order("createdAt", { ascending: false });
-
-  if (error) console.error("Projects error:", error);
-
+    .order("createdAt", { ascending: false })).data || [];
   return (
     <>
       {/* PAGE HEADER */}
