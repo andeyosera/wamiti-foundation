@@ -77,7 +77,7 @@ export default function ContributePage() {
           </h1>
           <p className="text-white/70 font-body leading-relaxed max-w-xl mx-auto">
             Every shilling you give goes directly into the communities of
-            Shinoyi Shikomari — planting trees, uplifting families, and
+            Shinoyi Shikomari planting trees, uplifting families, and
             building hope that lasts.
           </p>
         </div>
@@ -86,7 +86,7 @@ export default function ContributePage() {
       {/* CONTRIBUTION FORM */}
       <section className="section-padding bg-white">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          {/* Left — Why Give */}
+          {/* Left Why Give */}
           <div>
             <h2 className="text-2xl font-bold mb-6 text-navy">Your Impact</h2>
             <div className="space-y-4">
@@ -151,7 +151,7 @@ export default function ContributePage() {
             </div>
           </div>
 
-          {/* Right — Form */}
+          {/* Right Form */}
           <div className="card p-8">
             {success ? (
               <div className="text-center py-12">

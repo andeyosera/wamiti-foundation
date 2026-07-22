@@ -76,7 +76,7 @@ export default function VolunteerPage() {
             <span className="text-gold-light">Volunteer</span>
           </h1>
           <p className="text-white/70 font-body leading-relaxed max-w-2xl mx-auto">
-           You don&apos;t need much — just a willing heart. Whether you have
+           You don&apos;t need much just a willing heart. Whether you have
             an hour or a season to give, there is a place for you in the
             Wamiti family.
           </p>

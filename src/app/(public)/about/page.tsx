@@ -17,7 +17,7 @@ export default function AboutPage() {
           </h1>
           <p className="text-white/70 font-body leading-relaxed max-w-2xl mx-auto">
             Born from love for community, rooted in action, and growing
-            every day — this is who we are.
+            every day this is who we are.
           </p>
         </div>
       </section>
@@ -59,13 +59,13 @@ export default function AboutPage() {
               <span className="gradient-text">"Mheshimiwa wa Miti"</span>
             </h2>
             <p className="text-navy/70 font-body leading-relaxed mb-4">
-              My love for trees is not just about planting — it is about
+              My love for trees is not just about planting it is about
               what trees represent. Roots. Growth. Shade for those who come
               after us. That is the kind of legacy I want to leave in
               Shinoyi Shikomari.
             </p>
             <p className="text-navy/70 font-body leading-relaxed mb-4">
-              Wamiti Foundation is not a project. It is a promise — to
+              Wamiti Foundation is not a project. It is a promise to
               every child who needs a uniform to go to school, to every
               young person who needs a skill to build a future, to every
               family that needs support to put food on the table.
@@ -97,26 +97,26 @@ export default function AboutPage() {
             <div className="space-y-5 text-navy/70 font-body leading-relaxed relative z-10">
               <p>
                 To every person who has ever believed in what we are
-                doing here — <span className="highlight-blue">asante sana</span>.
+                doing here <span className="highlight-blue">asante sana</span>.
                 Your faith in this foundation keeps me going on the days
                 when the work feels heavy.
               </p>
               <p>
                 When I look at the children of Shinoyi Shikomari, I see
                 the future of this ward. I see doctors, engineers, farmers,
-                teachers — people who will one day look back and remember
+                teachers people who will one day look back and remember
                 that someone believed in them when it mattered most. That
                 is why we fight so hard to put{" "}
                 <span className="highlight-purple">uniforms on their backs</span>{" "}
                 and <span className="highlight-blue">books in their hands</span>.
-                Education is not a privilege — it is a right, and we will
+                Education is not a privilege it is a right, and we will
                 do everything in our power to make sure every child in this
                 ward can access it.
               </p>
               <p>
-                To our young people — you are not a problem to be solved.
+                To our young people you are not a problem to be solved.
                 You are the solution. The skills training programs we run,
-                the mentorship sessions, the vocational workshops — all of
+                the mentorship sessions, the vocational workshops all of
                 it is designed with one purpose:{" "}
                 <span className="highlight-purple">to give you a foundation</span>{" "}
                 strong enough to build your dreams on. I have watched young
@@ -125,8 +125,8 @@ export default function AboutPage() {
                 is nothing more beautiful than that.
               </p>
               <p>
-                Our agricultural programs — the chicken projects, the
-                kitchen gardens, the food security initiatives — are born
+                Our agricultural programs the chicken projects, the
+                kitchen gardens, the food security initiatives are born
                 from a simple truth:{" "}
                 <span className="highlight-blue">a hungry family cannot thrive</span>.
                 We want every household in Shinoyi Shikomari to have enough.
@@ -134,7 +134,7 @@ export default function AboutPage() {
                 invest in the next generation.
               </p>
               <p>
-                And the trees — always the trees. Every seedling we plant
+                And the trees always the trees. Every seedling we plant
                 is an act of faith in tomorrow. We plant knowing we may
                 never sit in the shade of some of these trees ourselves.
                 But our children will. And their children after them. That
@@ -142,7 +142,7 @@ export default function AboutPage() {
               </p>
               <p>
                 This community is my heart. Shinoyi Shikomari is not just
-                a place I come from — it is a place I am{" "}
+                a place I come from it is a place I am{" "}
                 <span className="highlight-purple">building towards</span>.
                 Together, <span className="highlight-blue">pamoja</span>,
                 we will make it everything it deserves to be.

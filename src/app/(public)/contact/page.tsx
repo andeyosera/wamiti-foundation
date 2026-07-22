@@ -58,7 +58,7 @@ export default function ContactPage() {
           </h1>
           <p className="text-white/70 font-body max-w-xl mx-auto leading-relaxed">
             Whether you have a question, want to partner with us, or simply
-            want to share a word of encouragement — our door is always open.
+            want to share a word of encouragement our door is always open.
           </p>
         </div>
       </section>
@@ -115,7 +115,7 @@ export default function ContactPage() {
                 same warmth it was sent."
               </p>
               <p className="text-primary font-body text-xs font-semibold mt-3">
-                — Julius Mulinya, Founder
+                Julius Mulinya, Founder
               </p>
             </div>
           </div>

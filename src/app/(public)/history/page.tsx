@@ -7,21 +7,21 @@ const timeline = [
     year: "2018",
     title: "The Seed is Planted",
     description:
-      "What began as a personal conviction grew into a community movement. Our founder began tree planting initiatives across Shinoyi Shikomari, earning the affectionate title Mheshimiwa wa Miti — a name that would come to define a legacy.",
+      "What began as a personal conviction grew into a community movement. Our founder began tree planting initiatives across Shinoyi Shikomari, earning the affectionate title Mheshimiwa wa Miti a name that would come to define a legacy.",
     color: "from-primary to-primary-dark",
   },
   {
     year: "2019",
     title: "First Community Project",
     description:
-      "We launched our first structured community project — providing school uniforms for over 100 children in Shinoyi who could not afford them. Watching those children walk to school in their uniforms for the first time remains one of our proudest moments.",
+      "We launched our first structured community project providing school uniforms for over 100 children in Shinoyi who could not afford them. Watching those children walk to school in their uniforms for the first time remains one of our proudest moments.",
     color: "from-purple-wamiti to-purple-dark",
   },
   {
     year: "2020",
     title: "Agricultural Empowerment Begins",
     description:
-      "Recognizing that food security is the foundation of all development, we launched our chicken farming project — equipping 50 families with chicks, coops, feeds, and training to build sustainable income sources from their own backyards.",
+      "Recognizing that food security is the foundation of all development, we launched our chicken farming project equipping 50 families with chicks, coops, feeds, and training to build sustainable income sources from their own backyards.",
     color: "from-primary to-purple-wamiti",
   },
   {
@@ -35,14 +35,14 @@ const timeline = [
     year: "2022",
     title: "Wamiti Foundation is Born",
     description:
-      "After years of grassroots work, Wamiti Foundation was formally established — giving our community initiatives a home, a name, and a structure to grow from. The foundation mandate: education, environment, youth, and agriculture.",
+      "After years of grassroots work, Wamiti Foundation was formally established giving our community initiatives a home, a name, and a structure to grow from. The foundation mandate: education, environment, youth, and agriculture.",
     color: "from-primary to-primary-dark",
   },
   {
     year: "2023",
     title: "10,000 Trees Milestone",
     description:
-      "We planted our 10,000th tree in Shikomari — a milestone that moved many of us to tears. Each tree represents a family, a child, a future. We celebrated not just the trees but the community members who planted them.",
+      "We planted our 10,000th tree in Shikomari a milestone that moved many of us to tears. Each tree represents a family, a child, a future. We celebrated not just the trees but the community members who planted them.",
     color: "from-purple-wamiti to-purple-dark",
   },
   {
@@ -56,7 +56,7 @@ const timeline = [
     year: "2025",
     title: "Growing Stronger Together",
     description:
-      "Today, Wamiti Foundation continues to grow — with more projects, more partners, and more hope than ever before. We are building a community where no child is left behind, no youth is without opportunity, and no family goes to bed hungry.",
+      "Today, Wamiti Foundation continues to grow with more projects, more partners, and more hope than ever before. We are building a community where no child is left behind, no youth is without opportunity, and no family goes to bed hungry.",
     color: "from-gold to-gold-dark",
   },
 ];
@@ -98,13 +98,13 @@ export default function HistoryPage() {
               Where It All Began
             </span>
             <h2 className="text-2xl md:text-3xl font-bold mb-4 text-balance">
-              Julius Mulinya — One Man, One Ward,{" "}
+              Julius Mulinya One Man, One Ward,{" "}
               <span className="gradient-text">One Vision</span>
             </h2>
             <p className="text-navy/70 font-body leading-relaxed mb-4">
                The story of Wamiti Foundation is inseparable from the story
                of its founder,{" "}
-               <span className="highlight-blue">Julius Mulinya</span> — a man
+               <span className="highlight-blue">Julius Mulinya</span> a man
                who grew up in the heart of{" "}
                <span className="highlight-purple">Shinoyi Shikomari Ward</span>{" "}
                and never forgot where he came from. Long before there was a
@@ -115,14 +115,14 @@ export default function HistoryPage() {
             <p className="text-navy/70 font-body leading-relaxed mb-4">
               People called him{" "}
               <span className="highlight-purple">"Mheshimiwa wa Miti"</span>{" "}
-              — not because of any title, but because of his actions. He
+              not because of any title, but because of his actions. He
               believed then, as he believes now, that the land and the
               people who live on it are sacred. That belief became the
               foundation of everything we do.
             </p>
             <p className="text-navy/70 font-body leading-relaxed">
               What started as individual acts of kindness grew into a
-              structured movement — and that movement became{" "}
+              structured movement and that movement became{" "}
               <span className="highlight-blue">Wamiti Foundation</span>.
             </p>
           </div>
@@ -166,7 +166,7 @@ export default function HistoryPage() {
         <p className="text-navy/70 font-body leading-relaxed mb-4">
           Behind every great community servant is a family that
           understands the calling. Julius Mulinya is a proud husband
-          and father of four — and it is his family that grounds him,
+          and father of four and it is his family that grounds him,
           motivates him, and reminds him every day why the work of
           <span className="highlight-blue"> Wamiti Foundation </span>
           matters.
@@ -196,7 +196,7 @@ export default function HistoryPage() {
           <span className="highlight-purple">2027 and beyond</span>,
           Julius carries with him the love of his family, the trust
           of his community, and the conviction that Shinoyi Shikomari
-          deserves the very best — in leadership, in development, and
+          deserves the very best in leadership, in development, and
           in hope.
         </p>
       </div>
@@ -298,7 +298,7 @@ export default function HistoryPage() {
           </h2>
           <p className="text-navy/60 font-body mb-8 leading-relaxed">
             The best of Wamiti Foundation is still ahead. Join us as we
-            write the next pages of this story — together.
+            write the next pages of this story together.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contribute" className="btn-primary">

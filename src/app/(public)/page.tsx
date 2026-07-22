@@ -6,25 +6,24 @@ export default function HomePage() {
   return (
   <>
 {/* HERO SECTION */}
-<section className="relative h-screen">
-  <div className="absolute inset-0">
+<section className="relative min-h-screen h-screen">
+  <div className="absolute inset-0 w-full h-full">
     <Image
-     src="/images/hero/homepage.jpg"
-     alt="Wamiti Foundation Community"
-     fill 
-     priority
-     className="object-cover object-center"
-     sizes="100vw"
-     quality={100}
-   />
-    {/* Lighter, more elegant overlay */}
-    <div className="absolute inset-0 bg-gradient-to-r from-navy/85 via-navy/60 to-transparent" />
+      src="/images/hero/homepage.jpg"
+      alt="Wamiti Foundation Community"
+      fill
+      priority
+      className="object-cover object-top"
+      sizes="(max-width: 768px) 100vw, 100vw"
+      quality={100}
+    />
+    <div className="absolute inset-0 bg-gradient-to-r from-navy/85 via-navy/60 to-navy/40" />
   </div>
 
-  <div className="relative z-10 h-full flex flex-col justify-center px-6 md:px-16 lg:px-24 max-w-7xl mx-auto animate-fade-in">
+  <div className="relative z-10 h-full min-h-screen flex flex-col justify-center px-6 md:px-16 lg:px-24">
     <div className="max-w-2xl">
       <span className="inline-block bg-white/10 backdrop-blur-sm border border-white/20 text-white text-xs font-body font-medium px-4 py-2 rounded-full mb-6 tracking-widest uppercase">
-        Wamiti Foundation — Shinoyi Shikomari
+        Wamiti Foundation Shinoyi Shikomari
       </span>
       <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight">
         Touching Lives,{" "}
@@ -32,7 +31,7 @@ export default function HomePage() {
       </h1>
       <p className="text-white/85 font-body text-lg md:text-xl mb-10 leading-relaxed">
         From tree planting to school empowerment, youth development
-        to agricultural uplift — rooted in Shinoyi Shikomari and
+        to agricultural uplift rooted in Shinoyi Shikomari and
         committed to transforming every corner of our community.
       </p>
       <div className="flex flex-col sm:flex-row gap-4">
@@ -48,8 +47,7 @@ export default function HomePage() {
       </div>
     </div>
   </div>
-
-    </section>
+</section>
 
       {/* STATS SECTION */}
       <section className="bg-gradient-to-r from-primary to-purple-wamiti text-white py-12">
@@ -166,7 +164,7 @@ export default function HomePage() {
             <p className="text-navy/70 font-body leading-relaxed">
               From buying school uniforms for children who would otherwise
               stay home, to training youth in vocational skills, to planting
-              trees that will outlive us all — every project is a seed of
+              trees that will outlive us all every project is a seed of
               hope planted with intention and love.
             </p>
             <div className="mt-8 flex gap-4">

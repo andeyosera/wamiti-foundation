@@ -119,7 +119,7 @@ export default async function ProjectDetailPage({
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-1 text-primary-light text-xs font-body mb-3">
               <MapPin className="w-3 h-3" />
-              <span>{project.location} — {project.area}</span>
+              <span>{project.location} {project.area}</span>
             </div>
             <h1 className="text-3xl md:text-5xl font-display font-bold text-white text-balance">
               {project.title}

@@ -32,7 +32,7 @@ export default async function ProjectsPage() {
           </h1>
           <p className="text-white/70 font-body leading-relaxed max-w-2xl mx-auto">
             From clean water to green forests, empowered youth to fed
-            families — here is a glimpse of what your support has made
+            families here is a glimpse of what your support has made
             possible across Shinoyi Shikomari Ward and beyond.
           </p>
         </div>
@@ -113,7 +113,7 @@ export default async function ProjectsPage() {
             Want to Support a Project?
           </h2>
           <p className="text-navy/60 font-body mb-8 leading-relaxed">
-            Every contribution — big or small — helps us reach more
+            Every contribution big or small helps us reach more
             communities and grow more hope across the ward.
           </p>
           <Link href="/contribute" className="btn-primary">
