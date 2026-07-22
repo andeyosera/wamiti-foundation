@@ -4,7 +4,7 @@ import { Leaf, Heart, Users, TreePine, ArrowRight, GraduationCap, Sprout } from 
 
 export default function HomePage() {
   return (
-    <>
+  <>
 {/* HERO SECTION */}
 <section className="relative h-screen">
   <div className="absolute inset-0">
@@ -49,7 +49,8 @@ export default function HomePage() {
     </div>
   </div>
 
- 
+    </section>
+
       {/* STATS SECTION */}
       <section className="bg-gradient-to-r from-primary to-purple-wamiti text-white py-12">
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
