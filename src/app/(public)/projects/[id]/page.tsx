@@ -6,9 +6,9 @@ import Link from "next/link";
 import { MapPin, ArrowLeft, Leaf, TrendingUp } from "lucide-react";
 import { getSupabaseAdmin } from "@/lib/supabase";
 import { notFound } from "next/navigation";
-import dynamicImport from "next/dynamic";
+import nextDynamic from "next/dynamic";
 
-const ProjectCharts = dynamicImport(
+const ProjectCharts = nextDynamic(
   () => import("@/components/sections/ProjectCharts"),
   { ssr: false }
 );
@@ -18,6 +18,9 @@ export default async function ProjectDetailPage({
 }: {
   params: { id: string };
 }) {
+  const supabaseAdmin = getSupabaseAdmin();
+  if (!supabaseAdmin) return notFound();
+
   const { data: project, error } = await supabaseAdmin
     .from("Project")
     .select("*")

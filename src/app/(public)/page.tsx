@@ -9,12 +9,14 @@ export default function HomePage() {
 <section className="relative h-screen">
   <div className="absolute inset-0">
     <Image
-      src="/images/hero/homepage.jpg"
-      alt="Wamiti Foundation Community"
-      fill
-      priority
-      className="object-cover"
-    />
+     src="/images/hero/homepage.jpg"
+     alt="Wamiti Foundation Community"
+     fill 
+     priority
+     className="object-cover object-center"
+     sizes="100vw"
+     quality={100}
+   />
     {/* Lighter, more elegant overlay */}
     <div className="absolute inset-0 bg-gradient-to-r from-navy/85 via-navy/60 to-transparent" />
   </div>
@@ -47,12 +49,7 @@ export default function HomePage() {
     </div>
   </div>
 
-  {/* Scroll indicator */}
-  <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
-    <p className="text-white/50 font-body text-xs tracking-widest uppercase">Scroll</p>
-    <div className="w-px h-8 bg-white/40" />
-  </div>
-</section>
+ 
       {/* STATS SECTION */}
       <section className="bg-gradient-to-r from-primary to-purple-wamiti text-white py-12">
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
