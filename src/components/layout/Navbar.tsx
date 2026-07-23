@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, Leaf } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -26,41 +26,41 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-md py-3"
-          : "bg-white py-5"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-white border-b border-neutral-border shadow-sm py-3" : "bg-white py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-9 h-9 bg-gradient-to-br from-primary to-purple-wamiti rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-            <Leaf className="w-5 h-5 text-white" />
+        <Link href="/" className="flex items-center gap-3">
+          <div className="w-8 h-8 bg-blue-primary flex items-center justify-center">
+            <span className="text-white font-display font-bold text-sm">W</span>
           </div>
           <div>
-            <p className="font-display font-bold text-lg leading-tight text-navy">
-              Wamiti
+            <p className="font-display font-bold text-base leading-tight text-neutral-dark">
+              Wamiti Foundation
             </p>
-            <p className="text-xs font-body leading-tight text-primary">
-              Foundation
+            <p className="text-xs font-body leading-tight text-neutral-gray">
+              Shinoyi Shikomari Ward
             </p>
           </div>
         </Link>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="font-body text-sm font-medium text-navy hover:text-primary transition-colors duration-300 relative group"
+              className="font-body text-sm text-neutral-dark hover:text-blue-accent transition-colors duration-200"
             >
               {link.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-purple-wamiti group-hover:w-full transition-all duration-300" />
             </Link>
           ))}
-          <Link href="/contribute" className="btn-primary text-sm py-2 px-6">
+          <Link
+            href="/contribute"
+            className="btn-primary text-sm py-2 px-6"
+          >
             Contribute
           </Link>
         </div>
@@ -68,36 +68,30 @@ export default function Navbar() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden w-10 h-10 flex items-center justify-center rounded-full bg-lavender hover:bg-lavender-dark transition-colors duration-300"
-          aria-label="Toggle menu"
+          className="md:hidden text-neutral-dark"
         >
-          {isOpen ? (
-            <X className="w-5 h-5 text-navy" />
-          ) : (
-            <Menu className="w-5 h-5 text-navy" />
-          )}
+          {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-white border-t border-lavender-dark shadow-lg">
+        <div className="md:hidden bg-white border-t border-neutral-border">
           <div className="px-6 py-4 flex flex-col gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="font-body text-navy font-medium py-3 px-4 rounded-xl hover:bg-lavender hover:text-primary transition-all duration-200 flex items-center gap-2"
+                className="font-body text-neutral-dark py-3 border-b border-neutral-border text-sm hover:text-blue-accent transition-colors"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-primary to-purple-wamiti" />
                 {link.label}
               </Link>
             ))}
             <Link
               href="/contribute"
               onClick={() => setIsOpen(false)}
-              className="btn-primary text-center text-sm mt-3"
+              className="btn-primary text-center text-sm mt-4"
             >
               Contribute Now
             </Link>

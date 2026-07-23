@@ -8,70 +8,62 @@
   }
 
   body {
-    @apply bg-white text-navy font-body;
+    @apply bg-white text-neutral-dark font-body;
   }
 
-  h1, h2, h3, h4 {
-    @apply font-display text-navy;
+  h1 {
+    @apply font-display text-neutral-dark;
+  }
+
+  h2, h3 {
+    @apply font-heading text-neutral-dark;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-primary hover:bg-primary-dark text-white font-body font-medium px-8 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5;
-  }
-
-  .btn-purple {
-    @apply bg-purple-wamiti hover:bg-purple-dark text-white font-body font-medium px-8 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5;
+    @apply bg-blue-primary hover:bg-blue-accent text-white font-heading font-medium px-8 py-3 transition-all duration-300 tracking-wide;
   }
 
   .btn-outline {
-    @apply border-2 border-primary text-primary hover:bg-primary hover:text-white font-body font-medium px-8 py-3 rounded-full transition-all duration-300;
+    @apply border border-blue-primary text-blue-primary hover:bg-blue-primary hover:text-white font-heading font-medium px-8 py-3 transition-all duration-300 tracking-wide;
   }
 
-  .btn-gold {
-    @apply bg-gold hover:bg-gold-dark text-white font-body font-medium px-8 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5;
+  .btn-text {
+    @apply text-blue-accent font-heading font-medium hover:text-blue-primary transition-colors duration-200 underline underline-offset-4;
   }
 
   .section-padding {
     @apply px-6 py-16 md:px-12 lg:px-24;
   }
 
-  .card {
-    @apply bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-lavender-dark;
-  }
-
-  .card-gradient {
-    @apply bg-gradient-to-br from-primary to-purple-wamiti rounded-2xl shadow-md overflow-hidden text-white;
-  }
-
-  .page-hero {
-    @apply relative h-[70vh] flex items-center justify-center overflow-hidden;
-  }
-
-  .highlight-blue {
-    @apply text-primary font-semibold;
-  }
-
-  .highlight-purple {
-    @apply text-purple-wamiti font-semibold;
+  .section-offwhite {
+    @apply bg-neutral-offwhite;
   }
 
   .section-blue {
-    @apply bg-lavender;
+    @apply bg-blue-pale;
   }
 
-  .section-dark {
-    @apply bg-navy text-white;
+  .divider {
+    @apply border-t border-neutral-border;
+  }
+
+  .card-clean {
+    @apply bg-white border border-neutral-border overflow-hidden;
+  }
+
+  .tag {
+    @apply inline-block text-xs font-heading font-semibold tracking-widest uppercase text-blue-accent;
+  }
+
+  .prose-wamiti {
+    @apply text-neutral-gray font-body leading-relaxed;
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
-  }
-
-  .gradient-text {
-    @apply bg-gradient-to-r from-primary to-purple-wamiti bg-clip-text text-transparent;
   }
 }

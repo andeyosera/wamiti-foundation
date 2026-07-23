@@ -8,6 +8,11 @@ import Link from "next/link";
 
 export default async function GalleryPage() {
   const supabaseAdmin = getSupabaseAdmin();
+
+  if (!supabaseAdmin) {
+    throw new Error("Supabase admin client unavailable");
+  }
+
   const { data: projects } = await supabaseAdmin
     .from("Project")
     .select("*")
